@@ -13,6 +13,12 @@ class CartList {
     this.render();
   }
 
+  addCartItem(productData) {
+    const newState = [...this.state, { ...productData, count: 1 }];
+    console.log(newState);
+    this.setState(newState);
+  }
+
   // 2. state를 통해 만들어진 string을 innerHTMLd을 통해 container(ul element)에 넣어줌
   // string을 넣어줄 때는 innerHTML을 사용
   render() {
@@ -33,7 +39,7 @@ class CartList {
                           class="flex justify-between text-base font-medium text-gray-900"
                         >
                           <h3>${item.name}</h3>
-                          <p class="ml-4">${item.price.toLocalestring()}</p>
+                          <p class="ml-4">${item.price.toLocaleString()}</p>
                         </div>
                       </div>
                       <div class="flex flex-1 items-end justify-between">

@@ -9,6 +9,8 @@ const $shoppingCart = document.getElementById('shopping-cart');
 const $backDrop = document.getElementById('backdrop');
 const $cartList = document.getElementById('cart-list');
 
+let productData = [];
+
 // instance 생성
 // 첫 번째 파라미터가 target element
 const productList = new ProductList($productListGrid, []);
@@ -23,11 +25,23 @@ const toggleCart = () => {
 const fetchProductData = async () => {
   const result = await getProductData();
   productList.setState(result);
+  productData = result;
+};
+
+const addCartItem = (e) => {
+  console.log(e.target.dataset.productid);
+  const clickedProduct = productData.find(
+    (product) => product.id == e.target.dataset.productid
+  );
+  if (!clickedProduct) return; // 상품 grid 내의 상품 카드 이외의 영역을 클릭할 경우 early return해서 에러 핸들링
+  cartList.addCartItem(clickedProduct);
+  toggleCart();
 };
 
 fetchProductData();
 
+// click 이벤트 리스너 등록
 $openCartBtn.addEventListener('click', toggleCart);
 $closeCartBtn.addEventListener('click', toggleCart);
 $backDrop.addEventListener('click', toggleCart);
-$productListGrid.addEventListener('click', toggleCart);
+$productListGrid.addEventListener('click', addCartItem);
