@@ -29,13 +29,20 @@ const fetchProductData = async () => {
 };
 
 const addCartItem = (e) => {
-  console.log(e.target.dataset.productid);
   const clickedProduct = productData.find(
     (product) => product.id == e.target.dataset.productid
   );
   if (!clickedProduct) return; // 상품 grid 내의 상품 카드 이외의 영역을 클릭할 경우 early return해서 에러 핸들링
   cartList.addCartItem(clickedProduct);
   toggleCart();
+};
+
+const removeCartItem = (e) => {
+  if (e.target.className == 'remove-btn') {
+    // li요소에 있는 id 값이 string이어서 number로 변환해주기
+    const currentProductId = parseInt(e.target.closest('li').id);
+    cartList.removeCartItem(currentProductId);
+  }
 };
 
 fetchProductData();
@@ -45,3 +52,4 @@ $openCartBtn.addEventListener('click', toggleCart);
 $closeCartBtn.addEventListener('click', toggleCart);
 $backDrop.addEventListener('click', toggleCart);
 $productListGrid.addEventListener('click', addCartItem);
+$cartList.addEventListener('click', removeCartItem);
