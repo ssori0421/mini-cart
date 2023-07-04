@@ -16,7 +16,20 @@ class CartList {
   }
 
   addCartItem(productData) {
-    const newState = [...this.state, { ...productData, count: 1 }];
+    let newState;
+    const clickedProductId = productData.id;
+    // findIndex 메소드를 사용 > 조건을 만족하는 첫 번째 요소의 index를 반환(일치하는 요소가 없으면 -1을 반환)
+    const checkedIdx = this.state.findIndex(
+      (item) => item.id === clickedProductId
+    );
+    // 처음 추가되는 상품
+    // 이미 추가되어 있는 상품의 경우 count를 늘려줌
+    if (checkedIdx === -1) {
+      newState = [...this.state, { ...productData, count: 1 }];
+    } else {
+      newState = [...this.state];
+      newState[checkedIdx].count += 1;
+    }
     this.setState(newState);
   }
 
