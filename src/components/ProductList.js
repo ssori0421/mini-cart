@@ -1,4 +1,5 @@
 class ProductList {
+  // 생성자 함수
   constructor($target, initialData) {
     this.$target = $target;
     this.state = initialData;
@@ -10,6 +11,7 @@ class ProductList {
     this.render();
   }
 
+  // setState가 될 됨때마다 실행
   render() {
     if (this.state.length === 0) {
       this.$target.innerHTML = '<h1>상품이 없습니다.</h1>';
