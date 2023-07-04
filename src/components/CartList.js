@@ -1,8 +1,10 @@
 class CartList {
+  // 생성자 함수
   constructor($target, initialData) {
     this.$target = $target;
     this.$container = document.createElement('ul'); // 1. ul element 직접 생성
     this.$container.className = 'divide-y divide-gray-200';
+    this.$totalCount = document.getElementById('total-count');
     this.state = initialData;
     this.$target.append(this.$container); // 3. target 부모에 container(ul element)를 넣어줌 // element를 넣어줄 때는 append 사용
     this.render();
@@ -21,7 +23,12 @@ class CartList {
 
   // 2. state를 통해 만들어진 string을 innerHTMLd을 통해 container(ul element)에 넣어줌
   // string을 넣어줄 때는 innerHTML을 사용
+  // setState가 될 됨때마다 실행
   render() {
+    this.$totalCount.innerHTML =
+      this.state
+        .reduce((acc, cur) => acc + cur.price * cur.count + acc, 0)
+        .toLocaleString() + '원';
     this.$container.innerHTML = this.state
       .map((item) => {
         return `      <li class="flex py-6" id="4">
@@ -39,7 +46,7 @@ class CartList {
                           class="flex justify-between text-base font-medium text-gray-900"
                         >
                           <h3>${item.name}</h3>
-                          <p class="ml-4">${item.price.toLocaleString()}</p>
+                          <p class="ml-4">${item.price.toLocaleString()}원</p>
                         </div>
                       </div>
                       <div class="flex flex-1 items-end justify-between">
