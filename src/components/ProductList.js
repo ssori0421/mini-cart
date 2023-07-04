@@ -4,10 +4,12 @@ class ProductList {
     this.state = initialData;
     this.render();
   }
+
   setState(newState) {
     this.state = newState;
     this.render();
   }
+
   render() {
     if (this.state.length === 0) {
       this.$target.innerHTML = '<h1>상품이 없습니다.</h1>';
