@@ -28,8 +28,23 @@ class CartList {
       newState = [...this.state, { ...productData, count: 1 }];
     } else {
       newState = [...this.state];
+      // 또 추가되는 상품(checkedIdx로 접근한 배열의 요소(item))의 count를 1 증가
       newState[checkedIdx].count += 1;
     }
+    this.setState(newState);
+  }
+
+  increaseCartItem(id) {
+    const newState = [...this.state];
+    const checkedIdx = this.state.findIndex((item) => item.id === id);
+    newState[checkedIdx].count += 1;
+    this.setState(newState);
+  }
+
+  decreaseCartItem(id) {
+    const newState = [...this.state];
+    const checkedIdx = this.state.findIndex((item) => item.id === id);
+    newState[checkedIdx].count -= 1;
     this.setState(newState);
   }
 
@@ -63,7 +78,9 @@ class CartList {
                           class="flex justify-between text-base font-medium text-gray-900"
                         >
                           <h3>${item.name}</h3>
-                          <p class="ml-4">${item.price.toLocaleString()}원</p>
+                          <p class="ml-4">${(
+                            item.price * item.count
+                          ).toLocaleString()}원</p>
                         </div>
                       </div>
                       <div class="flex flex-1 items-end justify-between">
