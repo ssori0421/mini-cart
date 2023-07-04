@@ -1,3 +1,6 @@
+// 상수
+const MAX_COUNT = 10;
+const MIN_COUNT = 10;
 class CartList {
   // 생성자 함수
   constructor($target, initialData) {
@@ -37,14 +40,22 @@ class CartList {
   increaseCartItem(id) {
     const newState = [...this.state];
     const checkedIdx = this.state.findIndex((item) => item.id === id);
-    newState[checkedIdx].count += 1;
+    if (newState[checkedIdx].count < MAX_COUNT) {
+      newState[checkedIdx].count += 1;
+    } else {
+      alert('장바구니에 담을 수 있는 최대 수량은 10개입니다.');
+    }
     this.setState(newState);
   }
 
   decreaseCartItem(id) {
     const newState = [...this.state];
     const checkedIdx = this.state.findIndex((item) => item.id === id);
-    newState[checkedIdx].count -= 1;
+    if (newState[checkedIdx].count > MIN_COUNT) {
+      newState[checkedIdx].count -= 1;
+    } else {
+      alert('장바구니에 담을 수 있는 최소 수량은 1개입니다.');
+    }
     this.setState(newState);
   }
 
