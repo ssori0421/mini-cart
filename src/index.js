@@ -25,3 +25,4 @@ fetchProductData();
 $openCartBtn.addEventListener('click', toggleCart);
 $closeCartBtn.addEventListener('click', toggleCart);
 $backDrop.addEventListener('click', toggleCart);
+$productListGrid.addEventListener('click', toggleCart);
