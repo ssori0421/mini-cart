@@ -5,11 +5,11 @@ class CartList {
   // 생성자 함수
   constructor($target, initialData) {
     this.$target = $target;
-    this.$container = document.createElement('ul'); // 1. ul element 직접 생성
+    this.$container = document.createElement('ul');
     this.$container.className = 'divide-y divide-gray-200';
     this.$totalCount = document.getElementById('total-count');
     this.state = initialData;
-    this.$target.append(this.$container); // 3. target 부모에 container(ul element)를 넣어줌 // element를 넣어줄 때는 append 사용
+    this.$target.append(this.$container);
     this.render();
   }
 
@@ -64,9 +64,11 @@ class CartList {
     this.setState(newState);
   }
 
-  // 2. state를 통해 만들어진 string을 innerHTMLd을 통해 container(ul element)에 넣어줌
-  // string을 넣어줄 때는 innerHTML을 사용
-  // setState가 될 됨때마다 실행
+  // 로컬스토리지에 장바구니 상품들이 담긴 객체를 문자열로 변환해서 저장
+  saveToLocalStorage() {
+    localStorage.setItem('cartState', JSON.stringify(this.state));
+  }
+
   render() {
     this.$totalCount.innerHTML =
       this.state

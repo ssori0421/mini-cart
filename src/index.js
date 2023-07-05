@@ -8,6 +8,7 @@ const $closeCartBtn = document.getElementById('close-cart-btn');
 const $shoppingCart = document.getElementById('shopping-cart');
 const $backDrop = document.getElementById('backdrop');
 const $cartList = document.getElementById('cart-list');
+const $paymentBtn = document.getElementById('payment-btn');
 
 let productData = [];
 
@@ -56,6 +57,10 @@ const modifyCartItem = (e) => {
   }
 };
 
+const saveToLocalStorage = () => {
+  cartList.saveToLocalStorage();
+};
+
 fetchProductData();
 
 // click 이벤트 리스너 등록
@@ -64,3 +69,4 @@ $closeCartBtn.addEventListener('click', toggleCart);
 $backDrop.addEventListener('click', toggleCart);
 $productListGrid.addEventListener('click', addCartItem);
 $cartList.addEventListener('click', modifyCartItem);
+$paymentBtn.addEventListener('click', saveToLocalStorage);
