@@ -8,7 +8,7 @@ Vanilla JS를 사용하여 요구사항을 구현한 후 React로 마이그레�
 
 본 저장소의 `wiki`에서 요구사항을 확인하실 수 있습니다.
 
-- [링크](https://github.com/hanameee/mini-cart/wiki/%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD)
+- [링크](https://github.com/ssori0421/mini-cart/wiki/%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD)
 
 ## 3. 데모 페이지
 
