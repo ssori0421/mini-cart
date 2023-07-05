@@ -1,8 +1,8 @@
-# mini. #3 장바구니
+# mini. #3 장바구니(Vanilla JS)
 
 ## 1. 목표
 
-Vanilla JS를 사용하여 요구사항을 구현한 후 React로 마이그레이션
+Vanilla JS를 사용하여 장바구니 구현
 
 ## 2. 요구사항
 
