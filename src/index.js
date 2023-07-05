@@ -12,10 +12,15 @@ const $paymentBtn = document.getElementById('payment-btn');
 
 let productData = [];
 
-// instance 생성
-// 첫 번째 파라미터가 target element
+// localstorage를 체크 > 값이 있으면 그걸 초기값으로, 아니면 빈배열
+// 문자열로 변환되어 로컬 스토리지에 저장되어 있는 장바구니 데이터를 다시 배열로 변환해서 저장
+const initialCartState = localStorage.getItem('cartState')
+  ? JSON.parse(localStorage.getItem('cartState'))
+  : [];
+
+// 인스턴스 생성
 const productList = new ProductList($productListGrid, []);
-const cartList = new CartList($cartList, []);
+const cartList = new CartList($cartList, initialCartState);
 
 const toggleCart = () => {
   $shoppingCart.classList.toggle('translate-x-full');
